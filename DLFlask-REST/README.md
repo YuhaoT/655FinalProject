@@ -34,7 +34,7 @@ pip install flask-restful
 ## Predict a cat
 
 ```
-python predict_resnet50.py capuchon.jpg
+python predict_resnet50.py cat.jpg
 ```
 
 Of course, you can try with a picture of yours.
@@ -49,7 +49,7 @@ python rest_api_predict.py
 And send a request with an image (note the @):
 
 ```
-curl localhost:5000/image -F file=@capuchon.jpg
+curl localhost:5000/image -F file=@cat.jpg
 ```
 
 Gives : 
