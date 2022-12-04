@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Image Uploader</title>
+</head>
+<body>
+
+<h1>Image Uploader</h1>
+
+<!-- This is the form for uploading the image -->
+<form id="upload-form" method="post" enctype="multipart/form-data">
+  <input type="file" name="image" id="image">
+  <input type="submit" value="Upload Image">
+</form>
+
+<!-- This is where we will display the success message -->
+<div id="upload-success" style="display: none;">
+  <h2>Image Uploaded Successfully!</h2>
+  <p>Your image was uploaded successfully and is now being processed.</p>
+</div>
+
+<!-- This is the JavaScript code for handling the image upload and displaying the success message -->
+<script>
+  // Get a reference to the form and the success message div
+  var form = document.getElementById('upload-form');
+  var success = document.getElementById('upload-success');
+
+  // Listen for the submit event on the form
+  form.addEventListener('submit', function(event) {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+
+    // Upload the image to the server
+
+    // Once the image is uploaded, show the success message
+    success.style.display = 'block';
+  });
+</script>
+
+</body>
+</html>
