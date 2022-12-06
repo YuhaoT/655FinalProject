@@ -24,11 +24,14 @@ def start_connection():
 def image_process(sock, addr):
     print ("connection accpeted {}:{}".format(addr[0],addr[1]))
     while True:
+        data = sock.recv(1024)
         fp = open("image.jpg","wb")
-        data = sock.recv(1024000)
-        while data:
-            fp.write(data)
+        while True:
             data = sock.recv(1024000)
+            if data == '':
+                break
+            fp.write(data)
+
         fp.close()
         start = time.perf_counter()
         replyStr = googlenet.image_predict("image.jpg")
