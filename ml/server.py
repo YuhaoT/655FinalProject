@@ -15,7 +15,7 @@ def start_connection():
         print('Failed to start connection')
         sys.exit(1)
     
-    print ("opened on address {}, port {}, waiting for a connection".format(self.address, self.port))
+    print ("opened on address {}, port {}, waiting for a connection".format(address, port))
 
     while True:
         sock, addr = s.accept()
