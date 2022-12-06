@@ -10,7 +10,7 @@ def est_connection():
     port = 5005
     try:
         client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        client.connect(addr, port)
+        client.connect((addr, port))
     except:
         print("destination could not be found.")
         sys.exit(1)
@@ -21,7 +21,10 @@ def est_connection():
 def send_file(client):
     for filename in os.listdir(PATHNAME):
         with open(os.path.join(os.getcwd(),PATHNAME,filename), 'rb') as f:
-            data = f.read(40960000)
+            data = f.read(1024000)
+            while data:
+                client.send(data)
+                data = f.read(1024000)
             client.send(data)
             f.close()
             print("file ", filename," has been sent.")
