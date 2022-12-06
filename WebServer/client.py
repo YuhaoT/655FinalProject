@@ -10,7 +10,7 @@ def est_connection():
     port = 5005
     try:
         client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
-        client.connect(addr, port)
+        client.connect((addr, port))
     except:
         print("destination could not be found.")
         sys.exit(1)
