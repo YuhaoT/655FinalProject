@@ -25,10 +25,10 @@ def image_process(sock, addr):
     print ("connection accpeted {}:{}".format(addr[0],addr[1]))
     while True:
         fp = open("image.jpg","wb")
-        data = sock.recv(2048)
+        data = sock.recv(1024000)
         while data:
             fp.write(data)
-            data = sock.recv(2048)
+            data = sock.recv(1024000)
         fp.close()
         start = time.perf_counter()
         replyStr = googlenet.image_predict("image.jpg")
