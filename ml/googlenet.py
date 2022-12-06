@@ -4,7 +4,8 @@ from torchvision.models import googlenet
 from torchvision import transforms
 
 def image_predict(image):
-    model = googlenet(weights="GoogLeNet_Weights.IMAGENET1K_V1")
+    model = torch.hub.load('pytorch/vision:v0.10.0', 'googlenet', pretrained=True)
+    # model = googlenet(weights="GoogLeNet_Weights.IMAGENET1K_V1")
     model.eval()
 
     filename = image
@@ -29,5 +30,8 @@ def image_predict(image):
 
     prob, catid = torch.topk(probabilities, 1)
     res = categories[catid] + " " + str(prob.item())
+    print (res)
     return res
 
+if __name__ == '__main__':
+    image_predict("image.jpg")
