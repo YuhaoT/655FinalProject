@@ -21,10 +21,10 @@ def est_connection():
 def send_file(client):
     for filename in os.listdir(PATHNAME):
         with open(os.path.join(os.getcwd(),PATHNAME,filename), 'rb') as f:
-            data = f.read(2048)
+            data = f.read(1024000)
             while data:
                 client.send(data)
-                data = f.read(2048)
+                data = f.read(1024000)
             client.send(data)
             f.close()
             print("file ", filename," has been sent.")
