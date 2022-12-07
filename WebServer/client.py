@@ -45,12 +45,12 @@ def send_file(client):
         
         strs = replyStr.split(" ",num = 3)
         RTT = end - start
-        transmission = RTT - strs[2]
+        transmission = RTT - float(strs[2])
         Tput = format(float(file_size)/float(RTT),".2f")
         print("Image is recognized as: ", replyStr)
-        print("Rtt:" + RTT)
+        print("Rtt:" + str(RTT))
         print("Throughtput:" + Tput + "bytes/s")
-        print("Transmission time:"+ transmission)
+        print("Transmission time:"+ str(transmission))
         return replyStr
 
 
