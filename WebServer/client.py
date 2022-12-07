@@ -8,7 +8,7 @@ PATHNAME = '/static/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 def est_connection():
-    addr = "127.0.0.1"
+    addr = "10.10.2.2"
     port = 5005
     try:
         client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
@@ -43,7 +43,7 @@ def send_file(client):
         replyStr = replyStr.decode()
         # Need to add logic here to extract timestamp
         
-        strs = replyStr.split(str=" ",num = 3)
+        strs = replyStr.split(" ",num = 3)
         RTT = end - start
         transmission = RTT - strs[2]
         Tput = format(float(file_size)/float(RTT),".2f")

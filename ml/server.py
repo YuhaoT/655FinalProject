@@ -5,7 +5,7 @@ import googlenet
 
 
 def start_connection():
-    address = "127.0.0.1"
+    address = "10.10.2.2"
     port = 5005
     try:
         s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
