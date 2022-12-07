@@ -8,7 +8,7 @@ PATHNAME = 'uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 def est_connection():
-    addr = "127.0.0.1"
+    addr = "10.10.2.2"
     port = 5005
     try:
         client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
