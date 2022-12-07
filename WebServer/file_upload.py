@@ -32,6 +32,7 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+            # send image to ML server
             est_connnection = client.est_connection()
             print(est_connnection)
             return render_template('index.html', success=True, filename=filename)
