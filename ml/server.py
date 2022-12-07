@@ -67,7 +67,7 @@ def image_process(sock, addr):
         start = time.perf_counter()
         replyStr = googlenet.image_predict("image.jpg")
         end = time.perf_counter()
-        sock.sendall((replyStr + f" {start - end:0.4f} seconds").encode())
+        sock.sendall((replyStr + f" {end - start:0.4f} seconds").encode())
         sock.close()
         break
 
