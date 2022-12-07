@@ -43,7 +43,7 @@ def send_file(client):
         replyStr = replyStr.decode()
         # Need to add logic here to extract timestamp
         
-        strs = replyStr.split(str=" ",num = 3)
+        strs = replyStr.split(" ",num = 3)
         RTT = end - start
         transmission = RTT - strs[2]
         Tput = format(float(file_size)/float(RTT),".2f")
