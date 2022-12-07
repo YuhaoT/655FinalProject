@@ -14,8 +14,9 @@ def est_connection():
     except:
         print("destination could not be found.")
         sys.exit(1)
-    send_file(client)
+    replyStr = send_file(client)
     client.close()
+    return replyStr
 
 
 def send_file(client):
@@ -37,7 +38,9 @@ def send_file(client):
         replyStr = replyStr.decode()
         # Need to add logic here to extract timestamp
         print("Image is recognized as: ", replyStr)
+        return replyStr
 
 
 if __name__ == '__main__':
     est_connection()
+    

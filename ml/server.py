@@ -41,26 +41,6 @@ def image_process(sock, addr):
             data = sock.recv(1024)
             print ("receiving ...")
 
-
-        # while not cursize == filesize:
-        #     if filesize - cursize > 1024:
-        #         print ("flag 1")
-        #         data = sock.recv(1024)
-        #         cursize += len(data)
-        #         print("we are in middle with", cursize, filesize)
-        #     else:
-        #         print ("flag 2")
-        #         data = sock.recv(filesize - cursize)
-        #         print("we are in final with", cursize, filesize)
-        #         cursize = filesize
-        #     fp.write(data)
-        
-
-            # data = sock.recv(1024)
-            # cursize += len(data)
-            # print (data)
-            # fp.write(data)
-
         print ("file recieved")
             
         fp.close()
