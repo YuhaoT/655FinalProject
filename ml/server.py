@@ -5,11 +5,12 @@ import googlenet
 
 
 def start_connection():
-    address = "127.0.0.1"
+    address = "10.10.2.2"
     port = 5005
     try:
         s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
         s.bind((address, port))
+        s.settimeout(30)
         s.listen()
     except:
         print('Failed to start connection')
@@ -18,8 +19,12 @@ def start_connection():
     print ("opened on address {}, port {}, waiting for a connection".format(address, port))
 
     while True:
-        sock, addr = s.accept()
-        image_process(sock, addr)
+        try:
+            sock, addr = s.accept()
+            image_process(sock, addr)
+        except socket.timeout:
+            s.close()
+            break
 
 def image_process(sock, addr):
     print ("connection accpeted {}:{}".format(addr[0],addr[1]))
