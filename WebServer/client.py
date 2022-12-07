@@ -4,7 +4,7 @@ import sys
 import time
 
 
-PATHNAME = 'uploads'
+PATHNAME = '/static/uploads'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 def est_connection():
