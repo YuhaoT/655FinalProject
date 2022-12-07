@@ -24,15 +24,50 @@ def start_connection():
 def image_process(sock, addr):
     print ("connection accpeted {}:{}".format(addr[0],addr[1]))
     while True:
-        sock.setblocking(False)
+        data = sock.recv(1024)
+        filesize = int(data.decode())
+        print ("initial data", filesize)
+        cursize = 0
         fp = open("image.jpg","wb")
-        data = sock.recv(20480000)
-        fp.write(data)
+        print ("opened")
+        data = sock.recv(1024)
+        print (data)
+        while True:
+            fp.write(data)
+            cursize += len(data)
+            if cursize == filesize:
+                break
+            print (cursize)
+            data = sock.recv(1024)
+            print ("receiving ...")
+
+
+        # while not cursize == filesize:
+        #     if filesize - cursize > 1024:
+        #         print ("flag 1")
+        #         data = sock.recv(1024)
+        #         cursize += len(data)
+        #         print("we are in middle with", cursize, filesize)
+        #     else:
+        #         print ("flag 2")
+        #         data = sock.recv(filesize - cursize)
+        #         print("we are in final with", cursize, filesize)
+        #         cursize = filesize
+        #     fp.write(data)
+        
+
+            # data = sock.recv(1024)
+            # cursize += len(data)
+            # print (data)
+            # fp.write(data)
+
+        print ("file recieved")
+            
         fp.close()
         start = time.perf_counter()
         replyStr = googlenet.image_predict("image.jpg")
         end = time.perf_counter()
-        sock.sendall(replyStr + f" {start - end:0.4f} seconds")
+        sock.sendall((replyStr + f" {start - end:0.4f} seconds").encode())
         sock.close()
         break
 

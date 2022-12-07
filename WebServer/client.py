@@ -20,17 +20,23 @@ def est_connection():
 
 def send_file(client):
     for filename in os.listdir(PATHNAME):
-        with open(os.path.join(os.getcwd(),PATHNAME,filename), 'rb') as f:
-            data = f.read(1024000)
-            while data:
-                client.send(data)
-                data = f.read(1024000)
-            client.send(data)
-            f.close()
-            print("file ", filename," has been sent.")
-            replyStr = client.recv(1024)
-            # Need to add logic here to extract timestamp
-            print("Image is recognized as: ", replyStr)
+        f = open(os.path.join(os.getcwd(),PATHNAME,filename), 'rb') 
+        file_size = os.path.getsize(os.path.join(os.getcwd(),PATHNAME,filename))
+        file_size = (str(file_size)).encode()
+        client.send(file_size)
+        # Reading file
+        while True:
+            data = f.read(1024)
+            if not data:
+                break
+            byteSend = client.send(data)
+            print(byteSend)
+        f.close()
+        print("file ", filename," has been sent.")
+        replyStr = client.recv(1024)
+        replyStr = replyStr.decode()
+        # Need to add logic here to extract timestamp
+        print("Image is recognized as: ", replyStr)
 
 
 if __name__ == '__main__':
