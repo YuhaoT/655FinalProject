@@ -3,12 +3,12 @@ import socket
 import sys
 import time
 
-
-PATHNAME = '/static/uploads'
+BASE_DIR = os.path.abspath(os.path.dirname(__file__)) 
+PATHNAME = 'static/upload'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 def est_connection():
-    addr = "10.10.2.2"
+    addr = "10.10.1.2"
     port = 5005
     try:
         client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
