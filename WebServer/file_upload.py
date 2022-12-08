@@ -5,7 +5,7 @@ import client
 
 BASE_DIR = os.path.abspath(os.path.dirname(__file__))
 print(BASE_DIR)
-UPLOAD_FOLDER = './static/upload'
+UPLOAD_FOLDER = 'static/upload'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
@@ -38,11 +38,11 @@ def upload_file():
             # send image to ML server
             est_connection = client.est_connection(filename)
             print(est_connection)
-            return render_template('index.html', success=True, filename=filename, message=est_connection)
+            return render_template('index.html', success=True, filename=os.path.join(app.config['UPLOAD_FOLDER'], filename), message=est_connection)
 
     return render_template('./index.html')
 
-@app.route('/display/<filename>')
+@app.route('/<filename>')
 def display_image(filename):
 	#print('display_image filename: ' + filename)
 	return redirect(url_for('static', filename='uploads/' + filename), code=301)
