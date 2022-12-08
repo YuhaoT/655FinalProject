@@ -36,9 +36,9 @@ def upload_file():
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
             # file.save(os.path.join(BASE_DIR, app.config['UPLOAD_FOLDER'], filename))
             # send image to ML server
-            est_connnection = client.est_connection()
-            print(est_connnection)
-            return render_template('index.html', success=True, filename=filename)
+            est_connection = client.est_connection()
+            print(est_connection)
+            return render_template('index.html', success=True, filename=filename, message=est_connection)
 
     return render_template('./index.html')
 

@@ -14,14 +14,9 @@
   <input type=submit value=Upload>
 </form>
 
-<!-- {% if success %}
-    <h2>Uploaded Image</h2>
-    <img src="{{ url_for('upload_file', filename=filename) }}" alt="Uploaded image">
-  {% endif %}
-
-</p> -->
 {% if success %}
 <p>Your image was uploaded successfully and is now being processed.</p>
+<p>Predict Result: {{ message }}</p>
 	<div>
 		<img src="{{ url_for('display_image', filename=filename) }}"
     width="400" 
