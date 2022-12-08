@@ -5,12 +5,12 @@ import googlenet
 
 
 def start_connection():
-    address = "10.10.2.2"
+    address = "10.10.1.2"
     port = 5005
     try:
         s = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
         s.bind((address, port))
-        s.settimeout(30)
+        s.settimeout(300)
         s.listen()
     except:
         print('Failed to start connection')
