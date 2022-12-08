@@ -3,8 +3,6 @@ from flask import Flask, flash, request, redirect, url_for , render_template, se
 from werkzeug.utils import secure_filename
 import client
 
-BASE_DIR = os.path.abspath(os.path.dirname(__file__))
-print(BASE_DIR)
 UPLOAD_FOLDER = 'static/upload'
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 
@@ -34,7 +32,7 @@ def upload_file():
         if file and allowed_file(file.filename):
             filename = secure_filename(file.filename)
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-            # file.save(os.path.join(BASE_DIR, app.config['UPLOAD_FOLDER'], filename))
+
             # send image to ML server
             est_connection = client.est_connection(filename)
             print(est_connection)
@@ -44,7 +42,6 @@ def upload_file():
 
 @app.route('/<filename>')
 def display_image(filename):
-	#print('display_image filename: ' + filename)
 	return redirect(url_for('static', filename='uploads/' + filename), code=301)
 
 if __name__ == "__main__":
