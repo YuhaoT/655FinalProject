@@ -11,12 +11,14 @@ pip3 install flask
 
 ## Predict a image
 
+* First start server.py with the following command on the ml server machine, it will run in loop.
 ```
-First start server.py using 
-"python3 server.py"
-on the ml server machine, it will keep running in loop.
-Then, start file_upload.py using
-"python3 file_upload.py"
-on the webserver machine, at this moment a website can be accessed via 143.215.216.196:80.
+python3 server.py
+```
+* Then, start file_upload.py using on the webserver machine
+```
+python3 file_upload.py
+```
+At this moment a website can be accessed via 143.215.216.196:80.
 Interact with the website and upload image, soon after you will get a result displayed on the website.
-```
+
