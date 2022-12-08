@@ -1,82 +1,22 @@
-# Deploying a Tensorflow Model with Flask
-
-![](cat.jpg)
-
 ## Installation 
 
-* download miniconda installer and make it executable
+* deploying pytorch and all nesseary library to ml server machine for machine learning.
 ```
-sudo wget -c https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
-sudo chmod +x Miniconda3-latest-Linux-x86_64.sh
+pip3 install libjpeg-dev zlib1g-dev Pillow torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu --no-cache-dir
 ```
-* install miniconda, and source your `.bashrc` file
+* deplying flask to webserver machine for website.
 ```
-./Miniconda3-latest-Linux-x86_64.sh 
-source /users/<XXX>/.bashrc
-```
-* create a new environment with flask, tensorflow, and pillow :  
-
-```
-conda create -n dlflask python=3.7 tensorflow flask pillow
-conda activate dlflask
+pip3 install flask
 ```
 
-At the moment, later versions of python lead to incompatibilities 
-between tensorflow and flask
-
-* install flast-restful with pip 
-(since this package is not available in conda) : 
+## Predict a image
 
 ```
-pip install flask-restful
-```
-
-## Predict a cat
-
-```
-python predict_resnet50.py cat.jpg
-```
-
-Of course, you can try with a picture of yours.
-
-
-## Start the app server
-
-```
-python rest_api_predict.py
-```
-
-And send a request with an image (note the @):
-
-```
-curl localhost:5000/image -F file=@cat.jpg
-```
-
-Gives : 
-
-```
-{
-    "top_categories": [
-        [
-            "tiger_cat",
-            0.5858142375946045
-        ],
-        [
-            "Egyptian_cat",
-            0.21068987250328064
-        ],
-        [
-            "tabby",
-            0.14554421603679657
-        ],
-        [
-            "pillow",
-            0.008319859392940998
-        ],
-        [
-            "lynx",
-            0.006789662875235081
-        ]
-    ]
-}
+First start server.py using 
+"python3 server.py"
+on the ml server machine, it will keep running in loop.
+Then, start file_upload.py using
+"python3 file_upload.py"
+on the webserver machine, at this moment a website can be accessed via 143.215.216.196:80.
+Interact with the website and upload image, soon after you will get a result displayed on the website.
 ```
