@@ -1,12 +1,28 @@
 ## Installation 
+**install miniconda for both ml and flask servers**
+* download miniconda installer and make it executable
+```
+sudo wget -c https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh
+sudo chmod +x Miniconda3-latest-Linux-x86_64.sh
+```
+* install miniconda, and source your `.bashrc` file
+```
+./Miniconda3-latest-Linux-x86_64.sh 
+source /users/<XXX>/.bashrc
+```
+* create a new environment with flask, torch, and pillow :  
 
-* deploying pytorch and all nesseary library to ml server machine for machine learning.
 ```
-pip3 install libjpeg-dev zlib1g-dev Pillow torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu --no-cache-dir
+conda create -n dlflask python=3.7 torch flask pillow
+conda activate dlflask
 ```
-* deplying flask to webserver machine for website.
+**deploying pytorch and all nesseary library to ml server machine for machine learning.**
 ```
-pip3 install flask
+pip install libjpeg-dev zlib1g-dev Pillow torch torchvision torchaudio --extra-index-url https://download.pytorch.org/whl/cpu --no-cache-dir
+```
+**deploying flask to webserver machine for website.**
+```
+pip install flask
 ```
 
 ## Predict a image
